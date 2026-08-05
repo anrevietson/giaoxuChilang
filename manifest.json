@@ -1,0 +1,20 @@
+{
+    "name": "Lịch Giáo xứ Chi Lăng",
+    "short_name": "LịchCG",
+    "start_url": "./CalendarGxChilang.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2196f3",
+    "icons": [
+      {
+        "src": "./01.webp",
+        "sizes": "192x192",
+        "type": "image/webp"
+      },
+      {
+        "src": "./01.webp",
+        "sizes": "512x512",
+        "type": "image/webp"
+      }
+    ]
+  }

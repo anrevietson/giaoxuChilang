@@ -1,0 +1,552 @@
+
+
+/* Phong cách chung cho toàn trang */
+  
+  
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header */
+.calendar-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0; /* Đặt khoảng cách ngoài nếu cần */
+}
+
+/* Container chính */
+.calendar-content {
+    background-color: white;
+    border-radius: 15px;
+    margin: 5px auto;
+    padding: 20px;
+    max-width: 900px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Định dạng phần ngày lớn và ngày nhỏ */
+.reading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.date-large {
+    font-size: 150px;
+    color: red;
+    text-align: center;
+    margin: -5px;
+    line-height: 0.9;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.weekday {
+    margin-left: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.lunar-date {
+    margin-right: 100px;
+    font-size: 20px;
+    font-weight: normal;
+    color: #ff0000;
+}
+
+.date-small {
+    font-size: 18px;
+    color: #3506f0;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Căn chỉnh thông tin lễ và bài đọc */
+.feast-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.feast-info {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Định dạng phần bài đọc */
+.readings {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.readings div {
+    margin-bottom: 8px;
+}
+
+/* Footer */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav div {
+    text-align: center;
+    cursor: pointer;
+}
+
+.bottom-nav div:hover {
+    background-color: #0056b3;
+}
+
+/* Bảng hiển thị thông tin */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Màu nền theo màu áo lễ */
+.bg-Tr { background-color: white; }
+.bg-Tm { background-color: #d8bfd8; }
+.bg-Đ {
+    background-color: #ff0000;
+    color: white;
+}
+.bg-X { background-color: lightgreen; }
+
+.week-separator {
+    height: 1px;
+    border-top: 10px solid #ccc;
+}
+
+/* Hình ảnh và nội dung khác */
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Định dạng văn bản đặc biệt */
+.info {
+    color: #020e5f;
+    font-weight: bold;
+    font-style: italic;
+    background-color: #94faf3;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Modal (hộp thoại) */
+.modal {
+    display: none; /* Ẩn modal khi chưa có lớp 'show' */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #f5f7b3;
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 700px;
+    max-height: 80%;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+.modal.show {
+    display: block; /* Hiển thị modal khi thêm lớp 'show' */
+}
+
+.modal-content {
+    padding: 20px;
+    text-align: left;
+}
+
+/* Định dạng cho các phần tử bài đọc bên trong #readingContent */
+.reading-section {
+    display: none; /* Ẩn tất cả các phần tử bài đọc ban đầu */
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.reading-section.show {
+    display: block; /* Chỉ hiển thị phần tử được yêu cầu */
+}
+
+.vertical-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: #d18a78;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.EucharisticAdoration {
+    color: rgb(3, 36, 247);        /* Màu xanh nước biển */
+    font-weight: bold;      /* In đậm */
+    font-style: italic;     /* In nghiêng */
+}
+.modal.show {
+    display: block;
+}
+/* Ẩn dấu X trong modal */
+.modal .close {
+    display: none;
+}
+
+.reading-section {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+/* Cụ thể hóa từng phần */
+#reading01, #psalm01, #reading02, #alleluia01, #gospel01 {
+    display: none; /* Mặc định ẩn từng phần */
+}
+
+.reading-section.show {
+    display: block !important; /* Hiển thị phần tử khi có lớp 'show' */
+}
+#readingContent {
+    transition: font-size 0.3s ease; /* Thêm hiệu ứng mượt */
+}
+
+#readingContent .reading-section {
+    font-size: inherit; /* Sử dụng kích thước phông chữ kế thừa từ phần tử cha */
+}
+
+
+.no-reading-message {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.overlay.show {
+    display: block;
+}
+
+.modal-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Căn chỉnh các nút cố định bên trái màn hình */
+.vertical-buttons {
+    position: sticky;
+    top: 10px;
+    left: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 1001;
+}
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #d18a78;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+br {
+    line-height: 2;
+}
+
+.readable {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-weight: normal; /* Văn bản mặc định không đậm */
+}
+
+.readable:hover {
+    color: blue;
+    font-weight: bold;
+}
+
+/* Định dạng cho các tên lễ */
+.feast-bold {
+    font-weight: bold;
+}
+
+/* Container chung cho phần chọn ngày và các nút */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: nowrap;
+}
+
+input[type="date"], input[type="number"], select, button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: auto;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.desktop-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.desktop-controls input,
+.desktop-controls select {
+    flex: 1;
+    max-width: 100px;
+}
+
+.desktop-controls button {
+    flex: none;
+    max-width: 150px;
+}
+
+.mobile-controls {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+        justify-content: space-around;
+        gap: 5px; /* Giảm khoảng cách giữa các nút để tiết kiệm không gian */
+    }
+    
+    /* Container chính */
+    .calendar-content {
+        background-color: rgb(250, 250, 211);
+        border-radius: 10px; /* Giảm độ bo viền để tiết kiệm không gian */
+        margin: 2px auto; /* Giảm khoảng cách bên ngoài */
+        padding: 10px; /* Giảm padding để có thêm không gian hiển thị */
+        max-width: 100%; /* Đảm bảo container chính sử dụng tối đa chiều rộng màn hình */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Giảm kích thước bóng để trông nhẹ nhàng hơn */
+        text-align: center;
+    }
+
+    /* Modal (hộp thoại) */
+    .modal {
+        margin-top: 0px;
+        display: none; /* Ẩn modal khi chưa có lớp 'show' */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #f5f7b3;
+        padding: 15px; /* Giảm padding để tiết kiệm không gian */
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); /* Giảm độ dày của bóng */
+        width: 90%; /* Tăng chiều rộng để sử dụng tối đa không gian màn hình */
+        max-width: 600px; /* Giảm max-width để phù hợp với mobile */
+        max-height: 85%; /* Tăng max-height để tận dụng chiều cao màn hình */
+        overflow-y: auto;
+        border-radius: 8px; /* Giảm độ bo góc để tiết kiệm không gian */
+    }
+
+    .desktop-controls {
+        display: none; /* Ẩn các điều khiển desktop trên mobile */
+    }
+
+    .weekday {
+        margin-left: 0;
+        font-size: 20px; /* Giảm font-size để vừa với màn hình nhỏ */
+    }
+
+    .lunar-date {
+        margin-right: 0;
+        font-size: 20px; /* Giảm font-size để vừa với màn hình nhỏ */
+    }
+  .mobile-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    width: 100%;
+    background-color: rgb(84, 123, 251); /* Nền màu xanh */
+    padding: 0px 0; /* Giảm padding để chiều cao nhỏ hơn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+    z-index: 9999; /* Đảm bảo footer luôn nằm trên cùng */
+}
+
+.mobile-footer.hidden {
+    transform: translateY(100%); /* Ẩn footer ra ngoài màn hình */
+}
+
+.mobile-controls {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    padding: 0; /* Loại bỏ padding không cần thiết */
+}
+
+.icon-button {
+    background-color: transparent; /* Nền trong suốt */
+    color: rgb(144, 68, 1);
+    border: none;
+    padding: 0; /* Giảm padding của nút */
+    font-size: 25px; /* Kích thước biểu tượng nhỏ hơn */
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 10px; /* Giảm khoảng cách giữa các nút */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Hiệu ứng hover nhẹ */
+}
+
+.icon-button:active {
+    background-color: rgba(255, 255, 255, 0.2); /* Hiệu ứng khi nhấn */
+}
+
+.modal-fullscreen {
+    margin-left: -40px;
+    margin-right: -50px;
+    margin-top: -80px;
+    margin-bottom: -10px;
+    width: 123%;
+    height: 110;
+    margin: -100;
+    overflow-y: hidden; /* Ẩn thanh cuộn dọc */
+    padding: 0;
+  }
+
+  /* Đảm bảo iframe chiếm toàn bộ không gian của modal */
+  #embedded-page {
+    position: relative; 
+    margin: 0;
+    margin-left: -15px;
+    margin-top: -70px; 
+    width: 100%; 
+    height: 110vh; 
+    overflow-y: hidden;
+    border: none; 
+    padding: 0; 
+  }
+
+  /* Loại bỏ padding trong body modal */
+  .modal-body {
+    margin: -100;
+    overflow-y: hidden; /* Ẩn thanh cuộn dọc */
+    padding: 0;
+  }
+
+  /* Đảm bảo modal header vẫn hiển thị */
+  .modal-header {
+    margin-top: 0px;
+    /* padding: 1rem;*/
+    background-color: #f8f9fa; /* Màu nền tùy chỉnh */
+  }
+
+
+
+}
+
