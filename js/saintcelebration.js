@@ -109,6 +109,7 @@ window.celebrations = [
         { date: '02/08', type: 'O', feast: 'Thánh Êusêbiô Vercellêsi (Tr). Thánh Phêrô Julianô Eymand, linh mục (Tr)' },
         { date: '04/08', type: 'M', feast: 'Thánh Gioan Maria Vianney, linh mục.', chasuble: 'Tr' },
         { date: '05/08', type: 'O', feast: 'Cung hiến thánh đường Đức Maria (Tr).' },
+	{ date: '06/08', type: 'M', feast: 'Test.' },
         { date: '07/08', type: 'O', feast: 'Thánh Xystô II, giáo hoàng, và các bạn, tử đạo (Đ). Thánh Cajêtanô, linh mục (Tr).' },
         { date: '08/08', type: 'M', feast: 'Thánh Đa Minh, linh mục.', chasuble: 'Tr' },
         { date: '09/08', type: 'O', feast: 'Thánh Têrêsa Bênêđicta, Thánh Giá, nữ tu, tử đạo (Đ).' },
